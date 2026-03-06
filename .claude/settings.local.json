@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php --version)",
+      "Bash(composer --version)",
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(composer create-project laravel/laravel .)",
+      "Bash(composer create-project laravel/laravel _laravel_temp)",
+      "Bash(php artisan install:breeze react --ssr --no-interaction)",
+      "Bash(composer require laravel/breeze --dev)",
+      "Bash(php artisan breeze:install react --ssr --no-interaction)",
+      "Bash(dir \"E:\\\\RISEGROUPCREDIT\\\\INFO\")",
+      "WebFetch(domain:thedisputecenter.com)",
+      "WebFetch(domain:disputebullies.com)",
+      "WebFetch(domain:creditfirm.net)",
+      "WebFetch(domain:diamondoutsourcing.com)",
+      "WebFetch(domain:b2bvirtualassistants.com)",
+      "WebFetch(domain:www.gafctoday.com)",
+      "WebFetch(domain:scpoutsourcing.com)",
+      "WebFetch(domain:campbelloutsourcing.com)",
+      "WebFetch(domain:www.creditrepairvas.com)",
+      "WebFetch(domain:disputesuite.com)",
+      "WebFetch(domain:creditrepaircloud.com)",
+      "WebFetch(domain:disputebee.com)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm run build)",
+      "Bash(curl -s http://127.0.0.1:8000/demo3)",
+      "Bash(ls E:/RISEGROUPCREDIT/public/logo*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/demo1)",
+      "Bash(curl -s -o /dev/null -w \"demo1: %{http_code}\\\\n\" http://127.0.0.1:8000/demo1)",
+      "Bash(curl -s -o /dev/null -w \"demo2: %{http_code}\\\\n\" http://127.0.0.1:8000/demo2)",
+      "Bash(curl -s -o /dev/null -w \"demo3: %{http_code}\\\\n\" http://127.0.0.1:8000/demo3)",
+      "Bash(curl -s -o /dev/null -w \"demo2: %{http_code}\" http://127.0.0.1:8000/demo2)",
+      "Bash(curl -s -o /dev/null -w \"demo3: %{http_code}\" http://127.0.0.1:8000/demo3)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/)",
+      "Bash(curl -s --max-time 10 -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/)",
+      "Bash(taskkill /F /IM php.exe)",
+      "Bash(curl -s --max-time 15 -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/)"
+    ]
+  }
+}

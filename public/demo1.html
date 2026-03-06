@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RISE Group Credit – Demo 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black:   #0D0D0D;
+    --marble:  #1A1A1A;
+    --vein:    #2a2a2a;
+    --gold:    #C9A84C;
+    --gold-bright: #F0C040;
+    --gold-dark:   #8B6914;
+    --white:   #FFFFFF;
+    --muted:   #999;
+    --border:  rgba(201,168,76,0.25);
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content:'';
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    background-size: 200px;
+    opacity: 0.4;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    background: rgba(13,13,13,0.85);
+  }
+  nav .logo img { height: 44px; }
+  nav ul { list-style:none; display:flex; gap:2.5rem; }
+  nav ul a {
+    text-decoration:none; color: var(--muted);
+    font-size:.75rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    transition: color .3s;
+  }
+  nav ul a:hover { color: var(--gold); }
+  nav .cta-btn {
+    padding: .6rem 1.6rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size:.7rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+    text-decoration:none;
+    transition: background .3s, color .3s;
+  }
+  nav .cta-btn:hover { background: var(--gold); color: var(--black); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 2rem 4rem;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position:absolute; inset:0; z-index:0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%),
+      linear-gradient(160deg, #0D0D0D 0%, #1a1612 50%, #0D0D0D 100%);
+  }
+  /* marble veins */
+  .hero-bg::after {
+    content:''; position:absolute; inset:0;
+    background: repeating-linear-gradient(
+      112deg,
+      transparent,
+      transparent 80px,
+      rgba(201,168,76,0.015) 80px,
+      rgba(201,168,76,0.015) 81px
+    ),
+    repeating-linear-gradient(
+      200deg,
+      transparent,
+      transparent 120px,
+      rgba(255,255,255,0.01) 120px,
+      rgba(255,255,255,0.01) 121px
+    );
+  }
+  .hero-content { position:relative; z-index:1; max-width:860px; }
+  .hero-eyebrow {
+    display:inline-block;
+    font-size:.68rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: .45rem 1.4rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 7vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -.01em;
+    margin-bottom: 1.8rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 45%, var(--gold-bright) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size:1rem; font-weight:300; color: rgba(255,255,255,.55);
+    line-height:1.8; max-width:540px; margin:0 auto 3rem;
+    letter-spacing:.02em;
+  }
+  .hero-actions { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; }
+  .btn-gold {
+    padding: 1rem 2.8rem;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-bright));
+    color: var(--black);
+    font-size:.75rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+    text-decoration:none; border:none; cursor:pointer;
+    transition: opacity .3s, transform .3s;
+    display:inline-block;
+  }
+  .btn-gold:hover { opacity:.88; transform:translateY(-2px); }
+  .btn-outline {
+    padding: 1rem 2.8rem;
+    border: 1px solid rgba(201,168,76,.4);
+    color: var(--gold);
+    font-size:.75rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+    text-decoration:none; display:inline-block;
+    transition: border-color .3s, background .3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,.06); }
+
+  /* scroll line */
+  .scroll-line {
+    position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:.6rem;
+    color: var(--muted); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase;
+  }
+  .scroll-line::after {
+    content:''; width:1px; height:50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollDown 2s ease-in-out infinite;
+  }
+  @keyframes scrollDown {
+    0%,100%{ transform:scaleY(1); opacity:.4; }
+    50%{ transform:scaleY(1.3); opacity:1; }
+  }
+
+  /* ─── STATS ─── */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-item {
+    padding: 3rem 2rem;
+    text-align:center;
+    border-right: 1px solid var(--border);
+    position:relative;
+  }
+  .stat-item:last-child { border-right:none; }
+  .stat-num {
+    font-family:'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight:600;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-bright));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    display:block; line-height:1;
+  }
+  .stat-label {
+    font-size:.65rem; letter-spacing:.18em; text-transform:uppercase;
+    color: var(--muted); margin-top:.6rem; display:block;
+  }
+
+  /* ─── SECTION COMMONS ─── */
+  section { position:relative; z-index:1; padding: 7rem 4rem; }
+  .section-label {
+    font-size:.65rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase;
+    color: var(--gold); margin-bottom:1rem; display:block;
+  }
+  .section-title {
+    font-family:'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem,4vw,3.8rem); font-weight:300; line-height:1.1;
+    margin-bottom:1.2rem;
+  }
+  .section-title em {
+    font-style:normal;
+    background: linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-bright));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  .section-sub {
+    color: rgba(255,255,255,.45); font-size:.9rem; line-height:1.8;
+    max-width:480px; font-weight:300; letter-spacing:.02em;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-grid {
+    display:grid; grid-template-columns: repeat(3,1fr); gap:1px;
+    background: var(--border); margin-top:5rem;
+    border: 1px solid var(--border);
+  }
+  .service-card {
+    background: var(--marble);
+    padding: 3rem 2.5rem;
+    position:relative; overflow:hidden;
+    transition: background .4s;
+  }
+  .service-card::before {
+    content:''; position:absolute; top:0; left:0; right:0;
+    height:2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0); transition: transform .4s;
+  }
+  .service-card:hover { background: #1f1c17; }
+  .service-card:hover::before { transform:scaleX(1); }
+  .service-num {
+    font-family:'Cormorant Garamond',serif;
+    font-size:3.5rem; font-weight:700;
+    color: rgba(201,168,76,0.12);
+    line-height:1; margin-bottom:1.5rem;
+  }
+  .service-icon {
+    width:42px; height:42px; margin-bottom:1.5rem;
+    border: 1px solid var(--border); display:flex; align-items:center; justify-content:center;
+  }
+  .service-icon svg { width:20px; height:20px; stroke:var(--gold); fill:none; }
+  .service-card h3 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem; font-weight:500; margin-bottom:1rem;
+  }
+  .service-card p { color:rgba(255,255,255,.45); font-size:.85rem; line-height:1.8; }
+
+  /* ─── PROCESS ─── */
+  .process-section { background: var(--marble); }
+  .process-wrap { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; }
+  .process-steps { margin-top:3rem; }
+  .process-step {
+    display:flex; gap:2rem; padding:2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .process-step:last-child { border-bottom:none; }
+  .step-num {
+    font-family:'Cormorant Garamond',serif;
+    font-size:2.2rem; font-weight:700; color:var(--gold);
+    min-width:40px; line-height:1;
+  }
+  .step-body h4 {
+    font-size:.85rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    margin-bottom:.5rem;
+  }
+  .step-body p { color:rgba(255,255,255,.45); font-size:.85rem; line-height:1.7; }
+  .process-visual {
+    position:relative;
+    background: linear-gradient(135deg, rgba(201,168,76,0.05), transparent);
+    border: 1px solid var(--border);
+    padding: 3rem;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    min-height:400px;
+  }
+  .process-visual::before {
+    content:''; position:absolute; inset:8px;
+    border: 1px solid var(--border); pointer-events:none;
+  }
+  .process-visual img { height:80px; opacity:.7; margin-bottom:2rem; }
+  .process-visual p {
+    text-align:center; color:rgba(255,255,255,.35);
+    font-size:.8rem; letter-spacing:.05em; line-height:1.8;
+  }
+
+  /* ─── WHY RISE ─── */
+  .why-wrap { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; }
+  .why-list { margin-top:3rem; display:flex; flex-direction:column; gap:1.2rem; }
+  .why-item {
+    display:flex; align-items:flex-start; gap:1.2rem;
+    padding:1.5rem; border:1px solid var(--border);
+    background: rgba(201,168,76,0.02);
+    transition: border-color .3s, background .3s;
+  }
+  .why-item:hover { border-color: rgba(201,168,76,.5); background: rgba(201,168,76,.05); }
+  .why-check {
+    width:20px; height:20px; flex-shrink:0; margin-top:2px;
+    background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .why-check svg { width:10px; height:10px; stroke:#000; fill:none; stroke-width:3; }
+  .why-item h4 { font-size:.85rem; font-weight:600; margin-bottom:.3rem; }
+  .why-item p { color:rgba(255,255,255,.45); font-size:.8rem; line-height:1.7; }
+  .why-image {
+    position:relative; overflow:hidden;
+    border: 1px solid var(--border);
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #1a1612, #0d0d0d);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .why-image::before {
+    content:'RISE'; font-family:'Cormorant Garamond',serif;
+    font-size:8rem; font-weight:700; color:rgba(201,168,76,0.06);
+    position:absolute;
+  }
+  .why-badge {
+    position:absolute; bottom:2rem; right:2rem; left:2rem;
+    border:1px solid var(--border); background:rgba(13,13,13,.9);
+    padding:1.5rem; backdrop-filter:blur(10px);
+  }
+  .why-badge strong {
+    font-family:'Cormorant Garamond',serif; font-size:1.5rem;
+    background:linear-gradient(135deg,var(--gold-dark),var(--gold-bright));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    display:block; margin-bottom:.3rem;
+  }
+  .why-badge span { font-size:.7rem; color:var(--muted); letter-spacing:.1em; }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    text-align:center;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1612 50%, #0d0d0d 100%);
+    border-top: 1px solid var(--border);
+    padding: 8rem 4rem;
+  }
+  .cta-section h2 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(2.5rem,5vw,4.5rem); font-weight:300; margin-bottom:1.5rem;
+  }
+  .cta-section h2 em {
+    font-style:normal;
+    background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-bright));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  .cta-section p { color:rgba(255,255,255,.45); font-size:.95rem; margin-bottom:3rem; max-width:480px; margin-left:auto; margin-right:auto; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding:2rem 4rem;
+    border-top:1px solid var(--border);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  footer img { height:32px; opacity:.7; }
+  footer p { font-size:.7rem; color:var(--muted); letter-spacing:.05em; }
+
+  @media(max-width:900px){
+    nav { padding:1rem 1.5rem; }
+    nav ul { display:none; }
+    section { padding:5rem 1.5rem; }
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .services-grid { grid-template-columns:1fr; }
+    .process-wrap, .why-wrap { grid-template-columns:1fr; }
+    .process-visual { min-height:250px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo"><img src="/logo.jpeg" alt="Rise Group Credit"/></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#why">Why Rise</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="cta-btn">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Credit Restoration Specialists</span>
+    <h1>Rebuild.<br/><em>Restore.</em><br/>Rise.</h1>
+    <p>We leverage proven compliance methodologies to dispute inaccurate negative items and help you reclaim the financial future you deserve.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-gold">Free Consultation</a>
+      <a href="#process" class="btn-outline">See How It Works</a>
+    </div>
+  </div>
+  <div class="scroll-line">Scroll</div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item">
+    <span class="stat-num">500+</span>
+    <span class="stat-label">Clients Restored</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">97%</span>
+    <span class="stat-label">Success Rate</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">35</span>
+    <span class="stat-label">Day Update Cycle</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">48h</span>
+    <span class="stat-label">Processing Time</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <span class="section-label">What We Do</span>
+  <h2 class="section-title">Comprehensive Credit<br/><em>Restoration Services</em></h2>
+  <p class="section-sub">Using the Metro 2 compliance method, we identify and dispute every inaccuracy holding your score back.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3>Credit Report Analysis</h3>
+      <p>We perform a thorough audit of your credit report across all three major bureaus, identifying every negative item eligible for dispute.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3>Custom Dispute Letters</h3>
+      <p>Using Metro 2 compliance standards, we craft personalized dispute letters tailored to each account and creditor — no templates.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3>Bureau Dispute Processing</h3>
+      <p>We send disputes to Equifax, Experian, and TransUnion, as well as directly to original creditors and collection agencies.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <h3>Progress Tracking</h3>
+      <p>Every 35 days your case is reviewed and updated. You'll always know exactly where your credit restoration stands.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <h3>FCRA & FDCPA Review</h3>
+      <p>Each case includes attorney review for violations of federal consumer protection laws — included at no additional cost.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <h3>Ongoing Compliance</h3>
+      <p>We continue processing dispute rounds until every legally removable item has been addressed or challenged to resolution.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="process-section">
+  <div class="process-wrap">
+    <div>
+      <span class="section-label">Our Process</span>
+      <h2 class="section-title">A Proven Path to<br/><em>Better Credit</em></h2>
+      <p class="section-sub">From the moment you enroll, we take over the complex work so you can focus on your future.</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <span class="step-num">1</span>
+          <div class="step-body">
+            <h4>Enroll & Onboard</h4>
+            <p>You provide two forms of ID and your credit monitoring login. We handle everything from there.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <h4>Audit & Analyze</h4>
+            <p>We pull and analyze your full credit report, identifying every negative item that can be legally challenged.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="step-num">3</span>
+          <div class="step-body">
+            <h4>Dispute & Submit</h4>
+            <p>Custom letters are sent to bureaus and creditors within 48–72 hours of processing approval.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="step-num">4</span>
+          <div class="step-body">
+            <h4>Track & Update</h4>
+            <p>Every 35 days your file is reviewed, updated, and the next round of disputes is prepared.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="process-visual">
+      <img src="/logo.jpeg" alt="Rise Group Credit"/>
+      <p>Certified credit restoration professionals using the Metro 2 Compliance Method — trusted by hundreds of clients nationwide.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY RISE -->
+<section id="why">
+  <div class="why-wrap">
+    <div class="why-image">
+      <div class="why-badge">
+        <strong>Restore. Rise.</strong>
+        <span>Your financial future starts here</span>
+      </div>
+    </div>
+    <div>
+      <span class="section-label">Why Rise Group Credit</span>
+      <h2 class="section-title">Excellence in Every<br/><em>Case We Handle</em></h2>
+      <p class="section-sub">We are not a template-based service. Every client receives a personalized strategy built on compliance and results.</p>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+          <div>
+            <h4>Metro 2 Compliance Method</h4>
+            <p>We use industry-standard Metro 2 formatting to craft disputes that creditors and bureaus are legally required to address.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+          <div>
+            <h4>Attorney-Reviewed Cases</h4>
+            <p>Every file receives legal review for FCRA and FDCPA violations at no extra cost to you.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+          <div>
+            <h4>No Contracts. No Hidden Fees.</h4>
+            <p>Transparent pricing with no long-term commitments. Pay for results, not promises.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="1,6 4,9 11,2"/></svg></div>
+          <div>
+            <h4>Dedicated Case Management</h4>
+            <p>A dedicated specialist manages your account from start to finish with regular updates every cycle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <span class="section-label">Begin Your Journey</span>
+  <h2>Ready to <em>Rise</em> Above<br/>Your Credit Challenges?</h2>
+  <p>Schedule your free, no-obligation credit consultation today. Our specialists are ready to review your case.</p>
+  <a href="tel:+1-800-000-0000" class="btn-gold">Schedule Free Consultation</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="/logo.jpeg" alt="Rise Group Credit"/>
+  <p>&copy; 2025 Rise Group Credit. All Rights Reserved.</p>
+  <p style="font-size:.65rem; color:#555;">Credit restoration services. Results may vary. We do not guarantee specific outcomes.</p>
+</footer>
+
+</body>
+</html>
