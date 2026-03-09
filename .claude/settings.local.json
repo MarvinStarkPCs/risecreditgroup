@@ -36,7 +36,11 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/)",
       "Bash(curl -s --max-time 10 -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/)",
       "Bash(taskkill /F /IM php.exe)",
-      "Bash(curl -s --max-time 15 -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/)"
+      "Bash(curl -s --max-time 15 -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/)",
+      "Bash(php artisan config:cache)",
+      "Bash(php artisan route:cache)",
+      "Bash(php artisan view:cache)",
+      "Bash(php artisan optimize)"
     ]
   }
 }
