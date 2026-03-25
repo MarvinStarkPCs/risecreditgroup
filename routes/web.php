@@ -6,12 +6,13 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Demo1');
+    return Inertia::render('Demo3');
 });
 
-Route::get('/demo1', function () { return Inertia::render('Demo1'); });
-Route::get('/demo2', function () { return Inertia::render('Demo2'); });
-Route::get('/demo3', function () { return Inertia::render('Demo3'); });
+Route::get('/apply', function () {
+    return Inertia::render('Register');
+});
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

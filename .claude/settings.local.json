@@ -40,7 +40,11 @@
       "Bash(php artisan config:cache)",
       "Bash(php artisan route:cache)",
       "Bash(php artisan view:cache)",
-      "Bash(php artisan optimize)"
+      "Bash(php artisan optimize)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(php artisan:*)"
     ]
-  }
+  },
+  "disableAllHooks": true
 }

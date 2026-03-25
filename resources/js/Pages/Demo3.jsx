@@ -3,47 +3,49 @@ import { Head, Link } from '@inertiajs/react';
 const ITEMS_HANDLED = [
     'Collections & Charge-offs',
     'Late Payments & Delinquencies',
-    'Bankruptcies & Judgments',
+    'Bankruptcies',
     'Hard Inquiries',
     'Identity Errors & Mixed Files',
+    'Repossession',
+    'Judgments',
 ];
 
 const SERVICES = [
-    { n: '01', title: 'Credit Report Analysis',    body: 'Complete audit across Equifax, Experian, and TransUnion to identify every item eligible for legal challenge.' },
-    { n: '02', title: 'Custom Dispute Letters',     body: 'Metro 2-formatted dispute letters crafted for each specific account and creditor. No mass templates.' },
-    { n: '03', title: 'Bureau & Creditor Submission', body: 'Disputes sent to all three major bureaus and directly to original creditors within 48–72 hours.' },
-    { n: '04', title: '35-Day Progress Tracking',  body: 'Your case is reviewed, updated, and the next round prepared every 35-day cycle — continuously.' },
-    { n: '05', title: 'FCRA & FDCPA Violation Review', body: 'Attorney-level review for federal consumer protection law violations, included at no extra cost.' },
-    { n: '06', title: 'Multi-Round Processing',    body: 'We continue dispute rounds until every legally removable negative item has been fully challenged.' },
+    { n: '01', title: 'Advanced Credit Report Audit',              body: 'Comprehensive tri-bureau analysis (Equifax, Experian, TransUnion) to identify all inaccurate, unverifiable, and legally disputable items — structured for strategic dispute execution.' },
+    { n: '02', title: 'Fully Customized Dispute Strategy (No Templates)', body: "Every dispute is individually crafted based on the client's report, account history, and legal positioning — leveraging FCRA, FDCPA, and Metro 2 standards." },
+    { n: '03', title: 'Metro 2–Compliant Dispute Letter Execution', body: 'Precision-formatted dispute letters aligned with Metro 2 reporting standards to challenge data integrity at the highest level.' },
+    { n: '04', title: 'Bureau & Creditor Submission (Fast Turnaround)', body: 'All disputes are submitted to credit bureaus and original creditors within 48–72 hours — ensuring operational speed without sacrificing accuracy.' },
+    { n: '05', title: 'FCRA & FDCPA Legal Positioning',            body: 'Each case is reinforced using federal consumer protection laws to identify violations, strengthen disputes, and increase the probability of deletions.' },
+    { n: '06', title: 'Multi-Round Dispute Processing & Cycle Management', body: 'Ongoing dispute cycles every 30–35 days, continuously adapted based on responses, results, and evolving account conditions.' },
 ];
 
 const PROCESS = [
-    { n: '01', title: 'Enroll',    body: 'Provide two forms of ID and your credit monitoring access. We take it from there — completely.' },
-    { n: '02', title: 'Audit',     body: 'We analyze your full credit profile across all bureaus and map out every negative item that can be legally disputed.' },
-    { n: '03', title: 'Dispute',   body: 'Custom Metro 2-compliant letters are submitted to bureaus and creditors within 48–72 hours.' },
-    { n: '04', title: 'Track & Repeat', body: 'Every 35 days your file is updated, results recorded, and the next round of disputes launched automatically.' },
+    { n: '01', title: 'Client Onboarding',                    body: 'You grant us secure team access within your CRM (Credit Repair Cloud, DisputeFox, or similar), allowing us to operate directly inside your system — fully white-label and seamlessly integrated into your workflow.' },
+    { n: '02', title: 'Audit & Strategic Planning',           body: 'We conduct a comprehensive tri-bureau audit and develop a fully customized dispute strategy based on FCRA, FDCPA, and Metro 2 compliance standards.' },
+    { n: '03', title: 'Dispute Execution',                    body: 'Precision-crafted, legally structured disputes are generated and submitted to credit bureaus and creditors within 48–72 hours.' },
+    { n: '04', title: 'Continuous Optimization & Processing', body: 'We track results, refine strategies, and execute ongoing dispute cycles every 30–35 days — ensuring consistent progress across all client files.' },
 ];
 
 const WHY = [
     {
         icon: <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />,
-        title: 'Metro 2 Compliance',
-        body: 'We use the industry-standard Metro 2 formatting method — the same language bureaus and creditors are legally required to respond to.',
+        title: 'Metro 2 Compliance Infrastructure',
+        body: 'Every dispute is structured using Metro 2 standards — ensuring alignment with the exact reporting framework used by bureaus and creditors, increasing accuracy and response effectiveness.',
     },
     {
         icon: <path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />,
-        title: 'Attorney Review Included',
-        body: 'Every case receives legal review for FCRA and FDCPA violations at no additional cost — an added layer of protection most services don\'t offer.',
+        title: 'Legal-Based Dispute Strategy (FCRA & FDCPA)',
+        body: 'Every case is developed using federal compliance laws to identify violations and strengthen dispute positioning — going beyond basic dispute processing.',
     },
     {
         icon: <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />,
-        title: 'No Contracts. No Hidden Fees.',
-        body: 'Transparent, straightforward pricing. You pay for the service, not for lock-in periods or empty promises.',
+        title: 'Flexible Partnership Model',
+        body: 'We operate under a clear service agreement designed to protect both parties — with flexible terms and simple cancellation notice, allowing you to scale without long-term constraints.',
     },
     {
         icon: <path d="M13 10V3L4 14h7v7l9-11h-7z" />,
-        title: '48–72 Hour Processing',
-        body: 'From enrollment to first submission, your disputes are in the system within two to three business days.',
+        title: '48–72 Hour Turnaround',
+        body: 'From CRM integration to dispute submission, your cases are processed quickly and consistently — supporting high-volume client operations without delays.',
     },
 ];
 
@@ -71,10 +73,10 @@ export default function Demo3() {
                             </li>
                         ))}
                     </ul>
-                    <a href="#contact"
+                    <Link href="/apply"
                        className="bg-gold-gradient text-rise-black text-[0.7rem] font-bold tracking-[0.12em] uppercase px-6 py-2.5 hover:opacity-85 transition-opacity">
-                        Free Consultation
-                    </a>
+                        Book a Demo
+                    </Link>
                 </nav>
 
                 {/* ── HERO — Split ── */}
@@ -94,25 +96,25 @@ export default function Demo3() {
                         <div className="relative z-10 animate-fade-up">
                             <div className="flex items-center gap-3 mb-8">
                                 <div className="w-10 h-px bg-rise-gold" />
-                                <span className="text-[0.65rem] font-medium tracking-[0.25em] uppercase text-rise-gold">Credit Restoration Experts</span>
+                                <span className="text-[0.65rem] font-medium tracking-[0.25em] uppercase text-rise-gold">Dispute Processing for Credit Repair Companies</span>
                             </div>
 
                             <h1 className="text-white mb-8"
                                 style={{ fontFamily: 'DM Serif Display', fontSize: 'clamp(3rem,6vw,6rem)', fontWeight: 400, lineHeight: 1.0 }}>
-                                Rise Above<br />
-                                <span className="text-gold-gradient">Your Credit</span><br />
-                                Challenges.
+                                Outsource Your Disputes.<br />
+                                <span className="text-gold-gradient">Scale Your Credit Repair</span><br />
+                                Company Faster.
                             </h1>
 
                             <p className="text-white/45 text-[0.9rem] leading-relaxed max-w-md mb-12 font-light">
-                                We apply the Metro 2 compliance methodology to remove inaccurate negative items, restore your score, and open the doors your credit has been closing.
+                                We integrate directly into your CRM and manage your entire dispute process using fully customized, law-based strategies — built for scalability, compliance, and performance.
                             </p>
 
                             <div className="flex gap-4 flex-wrap">
-                                <a href="#contact"
+                                <Link href="/apply"
                                    className="bg-gold-gradient text-rise-black text-[0.72rem] font-bold tracking-[0.18em] uppercase px-10 py-4 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-rise-gold/30 transition-all">
-                                    Get Free Analysis
-                                </a>
+                                    Book a Demo
+                                </Link>
                                 <a href="#process"
                                    className="border border-rise-gold/35 text-white/70 text-[0.72rem] font-medium tracking-[0.18em] uppercase px-10 py-4 hover:border-rise-gold hover:text-rise-gold transition-all">
                                     See How It Works
@@ -136,7 +138,7 @@ export default function Demo3() {
                                         <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(200,200,200,0.25)" strokeWidth="2.5" />
                                         <circle cx="18" cy="18" r="15.9" fill="none"
                                                 stroke="url(#goldGrad)" strokeWidth="2.5"
-                                                strokeDasharray="72 100" strokeLinecap="round" />
+                                                strokeDasharray="82 100" strokeLinecap="round" />
                                         <defs>
                                             <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                                                 <stop offset="0%" stopColor="#8B6914" />
@@ -151,9 +153,9 @@ export default function Demo3() {
                                     </div>
                                 </div>
                                 <div>
-                                    <p className="text-[0.82rem] text-rise-muted mb-1">From <strong className="text-rise-black">570</strong> to <strong className="text-rise-black">750</strong></p>
-                                    <p className="text-[0.82rem]"><strong className="text-rise-gold-dark">+180 points</strong></p>
-                                    <p className="text-[0.75rem] text-rise-muted mt-1">in 4 rounds of disputes</p>
+                                    <p className="text-[0.82rem] text-rise-muted mb-1">From <strong className="text-rise-black">350</strong> to <strong className="text-rise-black">750</strong></p>
+                                    <p className="text-[0.82rem]"><strong className="text-rise-gold-dark">+400 points</strong></p>
+                                    <p className="text-[0.75rem] text-rise-muted mt-1">in 6 rounds of disputes</p>
                                 </div>
                             </div>
                         </div>
@@ -178,10 +180,10 @@ export default function Demo3() {
                 {/* ── METRICS BAR ── */}
                 <div className="grid grid-cols-2 md:grid-cols-4 bg-gold-gradient">
                     {[
-                        { n: '500+', l: 'Clients Restored' },
-                        { n: '97%',  l: 'Success Rate' },
-                        { n: '35',   l: 'Day Update Cycle' },
-                        { n: '48h',  l: 'Processing' },
+                        { n: '5,000+', l: 'Disputes Processed' },
+                        { n: '97%',   l: 'Client Retention Rate' },
+                        { n: '48h',   l: 'Processing Time' },
+                        { n: '1,000+', l: 'Scalable to 1,000+ Clients' },
                     ].map((s, i) => (
                         <div key={i} className={`py-8 text-center ${i < 3 ? 'border-r border-rise-black/10' : ''}`}>
                             <strong className="block leading-none mb-1.5 text-rise-black"
@@ -203,10 +205,10 @@ export default function Demo3() {
                                 <span className="text-[0.65rem] font-medium tracking-[0.25em] uppercase text-rise-gold-dark">Services</span>
                             </div>
                             <h2 className="mb-5" style={{ fontFamily: 'DM Serif Display', fontSize: 'clamp(2rem,4vw,3.5rem)', fontWeight: 400, lineHeight: 1.1 }}>
-                                Everything Your<br />Credit <em>Needs</em>
+                                Everything You Need to<br />Scale Your Credit Repair <em>Operations</em>
                             </h2>
                             <p className="text-rise-muted text-[0.88rem] leading-relaxed max-w-xs">
-                                From first audit to final resolution — we handle every step of the dispute process with precision.
+                                We handle the entire dispute lifecycle for your clients — from audit to execution — so you can scale faster without increasing operational overhead.
                             </p>
                         </div>
 
@@ -235,22 +237,22 @@ export default function Demo3() {
                         <span className="text-[0.65rem] font-medium tracking-[0.25em] uppercase text-rise-gold">Our Process</span>
                     </div>
                     <h2 className="text-white mb-4" style={{ fontFamily: 'DM Serif Display', fontSize: 'clamp(2rem,4vw,3.5rem)', fontWeight: 400, lineHeight: 1.1 }}>
-                        Simple Steps.<br /><em style={{ color: '#C9A84C' }}>Serious Results.</em>
+                        Built to Scale Your<br /><em style={{ color: '#C9A84C' }}>Credit Repair Operations</em>
                     </h2>
-                    <p className="text-white/40 text-[0.88rem] leading-relaxed max-w-md mb-14">
-                        Our structured process means your credit is always moving forward — with or without you having to think about it.
+                    <p className="text-white/70 text-[0.88rem] leading-relaxed max-w-md mb-14">
+                        Our streamlined dispute processing system allows you to <span className="text-rise-gold">handle more clients</span> without increasing workload, staff, or operational complexity.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-px border-t border-rise-gold/15">
                         {PROCESS.map(p => (
                             <div key={p.n} className="relative px-6 pt-8 pb-6 group">
                                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-gold-gradient" />
-                                <div className="text-rise-gold/10 leading-none mb-6 select-none"
+                                <div className="text-rise-gold/40 leading-none mb-6 select-none"
                                      style={{ fontFamily: 'DM Serif Display', fontSize: '4rem', fontWeight: 400 }}>
                                     {p.n}
                                 </div>
                                 <h4 className="text-[0.78rem] font-semibold tracking-[0.1em] uppercase text-rise-gold mb-3">{p.title}</h4>
-                                <p className="text-white/40 text-[0.82rem] leading-relaxed">{p.body}</p>
+                                <p className="text-white/75 text-[0.82rem] leading-relaxed">{p.body}</p>
                             </div>
                         ))}
                     </div>
@@ -262,9 +264,12 @@ export default function Demo3() {
                         <div className="w-8 h-px bg-rise-gold" />
                         <span className="text-[0.65rem] font-medium tracking-[0.25em] uppercase text-rise-gold-dark">Why Rise Group Credit</span>
                     </div>
-                    <h2 className="mb-14" style={{ fontFamily: 'DM Serif Display', fontSize: 'clamp(2rem,4vw,3.5rem)', fontWeight: 400, lineHeight: 1.1 }}>
-                        Precision. Compliance.<br /><em style={{ color: '#8B6914' }}>Results.</em>
+                    <h2 className="mb-4" style={{ fontFamily: 'DM Serif Display', fontSize: 'clamp(2rem,4vw,3.5rem)', fontWeight: 400, lineHeight: 1.1 }}>
+                        Built on Precision. Driven by Compliance.<br /><em style={{ color: '#8B6914' }}>Designed to Scale.</em>
                     </h2>
+                    <p className="text-rise-gold-dark/70 text-[0.82rem] leading-relaxed max-w-lg mb-14">
+                        Our process combines legal frameworks, data compliance, and fully customized execution to deliver consistent results at scale for credit repair companies.
+                    </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-rise-shadow">
                         {WHY.map(w => (
@@ -295,16 +300,16 @@ export default function Demo3() {
                             <span className="text-[0.65rem] font-medium tracking-[0.25em] uppercase text-rise-gold">Begin Today</span>
                         </div>
                         <h2 className="text-white mb-5" style={{ fontFamily: 'DM Serif Display', fontSize: 'clamp(2.5rem,5vw,4.5rem)', fontWeight: 400, lineHeight: 1.1 }}>
-                            Your Credit Is<br />Ready to <em style={{ color: '#C9A84C' }}>Rise.</em>
+                            Ready to Scale Your Credit Repair Business?
                         </h2>
                         <p className="text-white/40 text-[0.93rem] leading-relaxed mb-12">
-                            Book your free consultation. A specialist will review your credit report and outline a personalized restoration strategy — at no cost, no obligation.
+                            Integrate our team into your CRM and let us handle your dispute processing — so you can focus on acquiring clients and scaling your business.
                         </p>
                         <div className="flex gap-4 justify-center flex-wrap">
-                            <a href="tel:+18000000000"
+                            <Link href="/apply"
                                className="bg-gold-gradient text-rise-black text-[0.72rem] font-bold tracking-[0.18em] uppercase px-10 py-4 hover:opacity-90 transition-opacity">
-                                Schedule Free Consultation
-                            </a>
+                                Book a Demo
+                            </Link>
                             <a href="#services"
                                className="border border-rise-gold/35 text-white/70 text-[0.72rem] font-medium tracking-[0.18em] uppercase px-10 py-4 hover:border-rise-gold hover:text-rise-gold transition-all">
                                 Learn More First
@@ -320,15 +325,6 @@ export default function Demo3() {
                     <p className="text-[0.62rem] text-white/20">Credit restoration services. Results may vary.</p>
                 </footer>
 
-                {/* Demo switcher */}
-                <div className="fixed bottom-6 right-6 flex gap-2 z-50">
-                    {[1,2,3].map(n => (
-                        <Link key={n} href={`/demo${n}`}
-                              className={`w-9 h-9 flex items-center justify-center text-[0.7rem] font-bold border transition-all ${n===3 ? 'bg-rise-gold text-rise-black border-rise-gold' : 'bg-rise-black border-rise-gold/40 text-rise-gold hover:border-rise-gold'}`}>
-                            {n}
-                        </Link>
-                    ))}
-                </div>
             </div>
         </>
     );
